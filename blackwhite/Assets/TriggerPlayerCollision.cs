@@ -21,15 +21,19 @@ public class TriggerPlayerCollision : MonoBehaviour
 				movement.canClimbLeft();
 			}
 		}
-
-		if (right)
-		{
-			movement.collidedRight();
-		}
 		else
 		{
-			movement.collidedLeft();
+			if (right)
+			{
+				movement.collidedRight();
+			}
+			else
+			{
+				movement.collidedLeft();
+			}
 		}
+
+		
 	}
 
 	void OnTriggerExit2D(Collider2D other)
