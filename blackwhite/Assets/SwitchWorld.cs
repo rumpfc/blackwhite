@@ -6,7 +6,7 @@ public class SwitchWorld : MonoBehaviour
 	public GameObject PlayerWhite;
 	public GameObject PlayerBlack;
 	public Camera MainCamera;
-	public Camera FlaschlightCamera;
+	public Camera FlashlightCamera;
 
 	void Update()
 	{
@@ -23,6 +23,7 @@ public class SwitchWorld : MonoBehaviour
 			changeWorld();
 		}
 	}
+
 	void changeWorld()
 	{
 		if (MainCamera.cullingMask == 1 << 9)
