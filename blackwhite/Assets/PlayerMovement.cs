@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
 	public void unblockedLeft() {
 		blockedLeft = false;
 		climbableLeft = false;
-		Debug.Log ("Clim left false");
 	}
 
 	void Update()
@@ -79,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log ("Moving false");
 				moving = false;
 			}
 		}

@@ -14,7 +14,6 @@ public class TriggerPlayerCollision : MonoBehaviour
 			if(right) {
 				movement.canClimbRight();
 			} else {
-				Debug.Log("Can climb left");
 				movement.canClimbLeft();
 			}
 		}
