@@ -7,7 +7,7 @@ public class TriggerPlayerCollision : MonoBehaviour
 	public PlayerMovement movement;
 	public bool right;
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerStay2D(Collider2D other)
 	{
 		Taggable taggable = other.GetComponent<Taggable>();
 		if (taggable != null && taggable.Climbable)
@@ -32,8 +32,6 @@ public class TriggerPlayerCollision : MonoBehaviour
 				movement.collidedLeft();
 			}
 		}
-
-		
 	}
 
 	void OnTriggerExit2D(Collider2D other)
