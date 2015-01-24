@@ -11,11 +11,11 @@ public class MoveObject : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonUp(0))
 		{
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-			if (hit.collider.gameObject != null)
+			if (hit.collider != null)
 			{
 				if (hit.collider.gameObject.GetComponent<Taggable>().Movable)
 				{
@@ -33,7 +33,7 @@ public class MoveObject : MonoBehaviour
 							if (ObjectToMove.transform.position.y - transform.position.y <= 0.2f && ObjectToMove.transform.position.y - transform.position.y >= -0.2f)
 							{
 								Moving = true;
-
+								PlayerMovementRef.moving = false;
 							}
 						}
 					}
