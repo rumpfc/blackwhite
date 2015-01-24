@@ -47,7 +47,7 @@ public class SwitchWorld : MonoBehaviour
 
 							if (swipeDistVertical > minSwipeDeltaY)
 							{
-								if (swipeDistVertical / swipeDistHorizontal < -1)
+								if (Mathf.Sign(swipeDistVertical) / Mathf.Sign(swipeDistHorizontal) < -1)
 								{
 									StartCoroutine(changeWorld());
 								}
