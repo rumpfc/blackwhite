@@ -74,7 +74,10 @@ public class SwitchWorld : MonoBehaviour
 			MainCamera.backgroundColor = Color.black;
 			FlashlightCamera.backgroundColor = Color.white;
 
-
+			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
+			{
+				g.layer = 8;
+			}
 		}
 		else
 		{
@@ -92,6 +95,12 @@ public class SwitchWorld : MonoBehaviour
 
 			MainCamera.backgroundColor = Color.white;
 			FlashlightCamera.backgroundColor = Color.black;
+
+			Debug.Log(GameObject.FindGameObjectsWithTag("Dynamic").Length);
+			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
+			{
+				g.layer = 9;
+			}
 		}
 	}
 }

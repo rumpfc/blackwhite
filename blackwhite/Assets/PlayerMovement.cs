@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public bool moving;
+	public bool Moving;
+	public float Speed = 3;
 
 	private Vector3 targetPos;
 	private bool blockedLeft;
@@ -24,13 +25,13 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	public void collidedLeft(){
-		if(moving && dist < 0) {
+		if(Moving && dist < 0) {
 			blockedLeft = true;
 		}
 	}
 
 	public void collidedRight(){
-		if(moving && dist > 0) {
+		if(Moving && dist > 0) {
 			blockedRight = true;
 		}
 	}
@@ -47,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
-		if(climbableRight && moving && dist > 0) {
+		if(climbableRight && Moving && dist > 0) {
 			rigidbody2D.velocity = new Vector3(0,4,0);
 		}
 
-		if(climbableLeft && moving && dist < 0) {
+		if(climbableLeft && Moving && dist < 0) {
 			rigidbody2D.velocity = new Vector3(0,4,0);
 		}
 
@@ -60,26 +61,26 @@ public class PlayerMovement : MonoBehaviour
 			targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			if((dist < 0 && !blockedLeft) || (dist > 0 && !blockedRight)) {
-				moving = true;
+				Moving = true;
 			}
 		}
 
-		if (moving)
+		if (Moving)
 		{
 			if (dist > 0.1f)
 			{
 				if(!blockedRight) {
-					transform.Translate(new Vector3(3, 0, 0) * Time.deltaTime);
+					transform.Translate(new Vector3(Speed, 0, 0) * Time.deltaTime);
 				}
 			} else if (dist < -0.1f)
 			{
 				if(!blockedLeft) {
-					transform.Translate(new Vector3(-3, 0, 0) * Time.deltaTime);
+					transform.Translate(new Vector3(-Speed, 0, 0) * Time.deltaTime);
 				}
 			}
 			else
 			{
-				moving = false;
+				Moving = false;
 			}
 		}
 	}
