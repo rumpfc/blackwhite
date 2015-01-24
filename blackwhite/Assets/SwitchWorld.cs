@@ -5,6 +5,13 @@ public class SwitchWorld : MonoBehaviour
 {
 	public GameObject PlayerWhite;
 	public GameObject PlayerBlack;
+
+	public Collider ColliderLeft;
+	public Collider ColliderRight;
+
+	public SpriteRenderer RendereLeft;
+	public SpriteRenderer RendereRight;
+
 	public Camera MainCamera;
 	public Camera FlashlightCamera;
 
@@ -55,7 +62,7 @@ public class SwitchWorld : MonoBehaviour
 
 	void changeWorld()
 	{
-		if (MainCamera.cullingMask == 1 << 9 )
+		if (MainCamera.cullingMask == 1 << 9)
 		{
 			MainCamera.cullingMask = 1 << 8;
 			PlayerBlack.SetActive(false);
