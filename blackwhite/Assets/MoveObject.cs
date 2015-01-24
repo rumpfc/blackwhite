@@ -37,7 +37,7 @@ public class MoveObject : MonoBehaviour
 							if (ObjectToMove.transform.position.y - transform.position.y <= 0.2f && ObjectToMove.transform.position.y - transform.position.y >= -0.2f)
 							{
 								Moving = true;
-								PlayerMovementRef.Moving = false;
+								PlayerMovementRef.StopWalking();
 								isClimbable = ObjectToMove.GetComponent<Taggable>().Climbable;
 								ObjectToMove.GetComponent<Taggable>().Climbable = false;
 								StartCoroutine(stopPlayer());
@@ -59,8 +59,8 @@ public class MoveObject : MonoBehaviour
 
 	IEnumerator stopPlayer()
 	{
-		GetComponent<PlayerMovement>().Moving = false;
+		GetComponent<PlayerMovement>().StopWalking();
 		yield return new WaitForEndOfFrame();
-		GetComponent<PlayerMovement>().Moving = false;
+		GetComponent<PlayerMovement>().StopWalking();
 	}
 }
