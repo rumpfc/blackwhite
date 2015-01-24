@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool blockedRight;
 	private bool climbableRight;
 	private bool climbableLeft;
+	private bool canJump = true;
 
 	private float dist
 	{
@@ -89,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log ("blockedRight");
+					Debug.Log("blockedRight");
 					StopWalking();
 				}
 			}
@@ -102,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log ("blockedRight");
+					Debug.Log("blockedRight");
 					StopWalking();
 				}
 			}
@@ -111,11 +112,47 @@ public class PlayerMovement : MonoBehaviour
 				StopWalking();
 			}
 		}
+		if (canJump)
+		{
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				jump();
+			}
+		}
+	}
+
+	void jump()
+	{
+		canJump = false;
+		GetComponent<Rigidbody2D>().isKinematic = true;
+		if (transform.localScale.x == 1)
+		{
+			GetComponent<Animator>().SetTrigger("JumpRight");
+		}
+		else
+		{
+			GetComponent<Animator>().SetTrigger("JumpLeft");
+		}
+	}
+
+	void stopJump()
+	{
+		if (transform.localScale.x == 1)
+		{
+			transform.Translate(new Vector3(0.5f, 1.0f, 0));
+		}
+		else
+		{
+			transform.Translate(new Vector3(-0.5f, 1.0f, 0));
+		}
+		GetComponent<Rigidbody2D>().isKinematic = false;
+		//rigidbody2D.velocity = new Vector2(0, -0.2f);
+		canJump = true;
 	}
 
 	public void StopWalking()
 	{
-		Debug.Log ("StopWalking() called");
+		Debug.Log("StopWalking() called");
 		moving = false;
 		GetComponent<Animator>().SetTrigger("Stop");
 	}
