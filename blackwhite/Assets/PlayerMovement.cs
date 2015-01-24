@@ -3,8 +3,9 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+	public bool moving;
+
 	private Vector3 targetPos;
-	private bool moving;
 	private bool blockedLeft;
 	private bool blockedRight;
 	private bool climbableRight;
