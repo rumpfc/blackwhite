@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 	private bool blockedRight;
 	private bool climbableRight;
 	private bool climbableLeft;
+
+	public Transform whiteSpriteTransform;
+	public Transform blackSpriteTransform;
 	
 	private float dist {
 		get { return targetPos.x - transform.position.x; }
@@ -70,11 +73,15 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if(!blockedRight) {
 					transform.Translate(new Vector3(3, 0, 0) * Time.deltaTime);
+					whiteSpriteTransform.localScale = new Vector3(1, 1, 1);
+					blackSpriteTransform.localScale = new Vector3(1, 1, 1);
 				}
 			} else if (dist < -0.1f)
 			{
 				if(!blockedLeft) {
 					transform.Translate(new Vector3(-3, 0, 0) * Time.deltaTime);
+					whiteSpriteTransform.localScale = new Vector3(-1, 1, 1);
+					blackSpriteTransform.localScale = new Vector3(-1, 1, 1);
 				}
 			}
 			else
