@@ -7,6 +7,18 @@ public class PlayerMovement : MonoBehaviour
 	private float dist;
 	private bool moving;
 
+	public void collidedLeft(){
+		if(moving && dist < 0) {
+			moving = false;
+		}
+	}
+
+	public void collidedRight(){
+		if(moving && dist > 0) {
+			moving = false;
+		}
+	}
+
 	void Update()
 	{
 		if (Input.GetMouseButtonUp(0))
