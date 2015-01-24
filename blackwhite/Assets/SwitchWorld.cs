@@ -132,8 +132,8 @@ public class SwitchWorld : MonoBehaviour
 			RendereBlack.color = new Color(1, 1, 1, 0);
 			RendereWhite.color = new Color(1, 1, 1, 1);
 
-			MainCamera.backgroundColor = Color.black;
-			FlashlightCamera.backgroundColor = Color.white;
+			MainCamera.backgroundColor = Color.white;
+			FlashlightCamera.backgroundColor = Color.black;
 
 			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
 			{
@@ -154,10 +154,9 @@ public class SwitchWorld : MonoBehaviour
 			RendereBlack.color = new Color(1, 1, 1, 1);
 			RendereWhite.color = new Color(1, 1, 1, 0);
 
-			MainCamera.backgroundColor = Color.white;
-			FlashlightCamera.backgroundColor = Color.black;
+			MainCamera.backgroundColor = Color.black;
+			FlashlightCamera.backgroundColor = Color.white;
 
-			Debug.Log(GameObject.FindGameObjectsWithTag("Dynamic").Length);
 			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
 			{
 				g.layer = 9;

@@ -60,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (climbableRight && moving && dist > 0)
 		{
-			rigidbody2D.velocity = new Vector3(0, 4, 0);
+			//rigidbody2D.velocity = new Vector3(0, 4, 0);
+			jump();
 		}
 
 		if (climbableLeft && moving && dist < 0)
