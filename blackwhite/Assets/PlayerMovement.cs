@@ -89,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log ("blockedRight");
 					StopWalking();
 				}
 			}
@@ -101,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log ("blockedRight");
 					StopWalking();
 				}
 			}
@@ -113,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public void StopWalking()
 	{
+		Debug.Log ("StopWalking() called");
 		moving = false;
 		GetComponent<Animator>().SetTrigger("Stop");
 	}
