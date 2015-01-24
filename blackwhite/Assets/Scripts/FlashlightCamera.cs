@@ -19,8 +19,6 @@ public class FlashlightCamera : MonoBehaviour
 		}
 		if(Input.GetMouseButton(1))
 		{
-			Debug.Log("hi");
-
 			flashlight.SetActive(true);
 
 			flashLightPos = Camera.main.ScreenToWorldPoint((Input.mousePosition));
