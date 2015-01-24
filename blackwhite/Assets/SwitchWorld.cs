@@ -8,13 +8,42 @@ public class SwitchWorld : MonoBehaviour
 	public Camera MainCamera;
 	public Camera FlashlightCamera;
 
+	public float minSwipeDeltaY;
+
+	private Vector2 startPos;
+
 	void Update()
 	{
 		if (Input.touchCount == 1f)
 		{
-			if (Input.touches[0].phase == TouchPhase.Began)
+			Touch touch = Input.touches[0];
+
+			if (touch.phase == TouchPhase.Began)
 			{
-				
+				switch (touch.phase)
+				{
+					case TouchPhase.Began:
+
+						startPos = touch.position;
+
+						break;
+
+					case TouchPhase.Ended:
+
+						float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
+
+						if (swipeDistVertical > minSwipeDeltaY)
+						{
+
+							float swipeValue = Mathf.Sign(touch.position.y - startPos.y);
+
+							if (swipeValue > 0)
+							{
+								changeWorld();
+							}
+						}
+						break;
+				}
 			}
 		}
 
