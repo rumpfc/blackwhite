@@ -24,43 +24,50 @@ public class SwitchWorld : MonoBehaviour
 
 	private Vector2 startPos;
 
+	private bool canSwitch = true;
+
 	void Update()
 	{
-		if (Input.touchCount == 1f)
+		if (canSwitch)
 		{
-			Touch touch = Input.touches[0];
-
-			if (touch.phase == TouchPhase.Began)
+			if (Input.touchCount == 1f)
 			{
-				switch (touch.phase)
-				{
-					case TouchPhase.Began:
-						startPos = touch.position;
-						break;
-					case TouchPhase.Ended:
-						float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
-						float swipeDistHorizontal = (new Vector3(touch.position.x, 0, 0) - new Vector3(startPos.x, 0, 0)).magnitude;
+				Touch touch = Input.touches[0];
 
-						if (swipeDistVertical > minSwipeDeltaY)
-						{
-							if (swipeDistVertical / swipeDistHorizontal < -1)
+				if (touch.phase == TouchPhase.Began)
+				{
+					switch (touch.phase)
+					{
+						case TouchPhase.Began:
+							startPos = touch.position;
+							break;
+						case TouchPhase.Ended:
+							float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
+							float swipeDistHorizontal = (new Vector3(touch.position.x, 0, 0) - new Vector3(startPos.x, 0, 0)).magnitude;
+
+							if (swipeDistVertical > minSwipeDeltaY)
 							{
-								StartCoroutine(changeWorld());
+								if (swipeDistVertical / swipeDistHorizontal < -1)
+								{
+									StartCoroutine(changeWorld());
+								}
 							}
-						}
-						break;
+							break;
+					}
 				}
 			}
-		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			StartCoroutine(changeWorld());
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				StartCoroutine(changeWorld());
+			}
 		}
 	}
 
 	IEnumerator changeWorld()
 	{
+		canSwitch = false;
+
 		Panel.GetComponent<Animator>().SetTrigger("ChangeWorldTrigger");
 
 		if (Panel.GetComponent<Image>().color.r == 1f)
@@ -118,5 +125,9 @@ public class SwitchWorld : MonoBehaviour
 				g.layer = 9;
 			}
 		}
+
+		yield return new WaitForSeconds(0.5f);
+
+		canSwitch = true;
 	}
 }
