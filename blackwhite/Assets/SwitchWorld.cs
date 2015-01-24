@@ -55,7 +55,7 @@ public class SwitchWorld : MonoBehaviour
 
 	void changeWorld()
 	{
-		if (MainCamera.cullingMask == 1 << 9)
+		if (MainCamera.cullingMask == 1 << 9 )
 		{
 			MainCamera.cullingMask = 1 << 8;
 			PlayerBlack.SetActive(false);
