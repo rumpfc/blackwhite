@@ -149,12 +149,9 @@ public class PlayerMovement : MonoBehaviour
 
 	void jump()
 	{
-<<<<<<< HEAD
 		Debug.Log ("I'm jumping");
-=======
 		moving = false;
 
->>>>>>> origin/master
 		canJump = false;
 		GetComponent<Rigidbody2D>().isKinematic = true;
 		if (PlayerWhite.transform.localScale.x == 1)
