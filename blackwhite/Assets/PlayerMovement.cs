@@ -129,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void jump()
 	{
+		moving = false;
+
 		canJump = false;
 		GetComponent<Rigidbody2D>().isKinematic = true;
 		if (PlayerWhite.transform.localScale.x == 1)
@@ -154,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
 		GetComponent<Rigidbody2D>().isKinematic = false;
 		//rigidbody2D.velocity = new Vector2(0, -0.2f);
 		canJump = true;
+		moving = true;
 	}
 
 	public void StopWalking()
