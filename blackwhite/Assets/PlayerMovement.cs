@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
 	public float Speed = 3;
 
+	public GameObject PlayerWhite;
+	public GameObject PlayerBlack;
+
 	private bool moving;
 	private Vector3 targetPos;
 	private bool blockedLeft;
@@ -61,12 +64,19 @@ public class PlayerMovement : MonoBehaviour
 		if (climbableRight && moving && dist > 0)
 		{
 			//rigidbody2D.velocity = new Vector3(0, 4, 0);
-			jump();
+			if (canJump)
+			{
+				jump();
+			}
 		}
 
 		if (climbableLeft && moving && dist < 0)
 		{
-			rigidbody2D.velocity = new Vector3(0, 4, 0);
+			//rigidbody2D.velocity = new Vector3(0, 4, 0);
+			if (canJump)
+			{
+				jump();
+			}
 		}
 
 		if (Input.GetMouseButtonUp(0))
@@ -87,7 +97,8 @@ public class PlayerMovement : MonoBehaviour
 				if (!blockedRight)
 				{
 					transform.Translate(new Vector3(Speed, 0, 0) * Time.deltaTime);
-					transform.localScale = new Vector3(1, 1, 1);
+					PlayerWhite.transform.localScale = new Vector3(1, 1, 1);
+					PlayerBlack.transform.localScale = new Vector3(1, 1, 1);
 				}
 				else
 				{
@@ -100,7 +111,8 @@ public class PlayerMovement : MonoBehaviour
 				if (!blockedLeft)
 				{
 					transform.Translate(new Vector3(-Speed, 0, 0) * Time.deltaTime);
-					transform.localScale = new Vector3(-1, 1, 1);
+					PlayerWhite.transform.localScale = new Vector3(-1, 1, 1);
+					PlayerBlack.transform.localScale = new Vector3(-1, 1, 1);
 				}
 				else
 				{
@@ -113,20 +125,13 @@ public class PlayerMovement : MonoBehaviour
 				StopWalking();
 			}
 		}
-		if (canJump)
-		{
-			if (Input.GetKeyDown(KeyCode.E))
-			{
-				jump();
-			}
-		}
 	}
 
 	void jump()
 	{
 		canJump = false;
 		GetComponent<Rigidbody2D>().isKinematic = true;
-		if (transform.localScale.x == 1)
+		if (PlayerWhite.transform.localScale.x == 1)
 		{
 			GetComponent<Animator>().SetTrigger("JumpRight");
 		}
@@ -138,13 +143,13 @@ public class PlayerMovement : MonoBehaviour
 
 	void stopJump()
 	{
-		if (transform.localScale.x == 1)
+		if (PlayerWhite.transform.localScale.x == 1)
 		{
-			transform.Translate(new Vector3(0.5f, 1.0f, 0));
+			transform.Translate(new Vector3(1.125f, 1.001f, 0));
 		}
 		else
 		{
-			transform.Translate(new Vector3(-0.5f, 1.0f, 0));
+			transform.Translate(new Vector3(-1.125f, 1.001f, 0));
 		}
 		GetComponent<Rigidbody2D>().isKinematic = false;
 		//rigidbody2D.velocity = new Vector2(0, -0.2f);
