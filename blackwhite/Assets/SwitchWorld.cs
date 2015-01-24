@@ -26,36 +26,74 @@ public class SwitchWorld : MonoBehaviour
 
 	private bool canSwitch = true;
 
+	public float minSwipeDistX;
+	public float minSwipeDistY;
+
+
 	void Update()
 	{
 		if (canSwitch)
 		{
-			if (Input.touchCount == 1f)
-			{
-				Touch touch = Input.touches[0];
+			if (Input.touchCount > 0) 
+             
+         {
+             
+             Touch touch = Input.touches[0];
+             
+             
+             
+             switch (touch.phase) 
+                 
+             {
+                 
+             case TouchPhase.Began:
+ 
+                 startPos = touch.position;
+                 
+                 break;
+                 
+                 
+                 
+             case TouchPhase.Ended:
+ 
+                     float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
+ 
+                     if (swipeDistVertical > minSwipeDistY) 
+                         
+                     {
+                         
+                         float swipeValue = Mathf.Sign(touch.position.y - startPos.y);
+                         
+                         if (swipeValue > 0)//up swipe
+ 
+                            changeWorld();
+                         
+                         else if (swipeValue < 0){}//down swipe
+ 
+                             //Shrink ();
+                         
+                     }
+                     
+                     float swipeDistHorizontal = (new Vector3(touch.position.x,0, 0) - new Vector3(startPos.x, 0, 0)).magnitude;
+                     
+                     if (swipeDistHorizontal > minSwipeDistX) 
+                         
+                     {
+                         
+                         float swipeValue = Mathf.Sign(touch.position.x - startPos.x);
+                         
+                         if (swipeValue > 0){}//right swipe
+                             
+                             //MoveRight ();
 
-				if (touch.phase == TouchPhase.Began)
-				{
-					switch (touch.phase)
-					{
-						case TouchPhase.Began:
-							startPos = touch.position;
-							break;
-						case TouchPhase.Ended:
-							float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
-							float swipeDistHorizontal = (new Vector3(touch.position.x, 0, 0) - new Vector3(startPos.x, 0, 0)).magnitude;
-
-							if (swipeDistVertical > minSwipeDeltaY)
-							{
-								if (swipeDistVertical / swipeDistHorizontal < -1)
-								{
-									StartCoroutine(changeWorld());
-								}
-							}
-							break;
-					}
-				}
-			}
+						 else if (swipeValue < 0) { }//left swipe
+                             
+                             //MoveLeft ();
+                         
+                     }
+                 break;
+             }
+         }
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
