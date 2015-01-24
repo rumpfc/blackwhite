@@ -6,11 +6,11 @@ public class SwitchWorld : MonoBehaviour
 	public GameObject PlayerWhite;
 	public GameObject PlayerBlack;
 
-	public Collider ColliderLeft;
-	public Collider ColliderRight;
+	public GameObject ColliderLeft;
+	public GameObject ColliderRight;
 
-	public SpriteRenderer RendereLeft;
-	public SpriteRenderer RendereRight;
+	public SpriteRenderer RendereWhite;
+	public SpriteRenderer RendereBlack;
 
 	public Camera MainCamera;
 	public Camera FlashlightCamera;
@@ -65,16 +65,34 @@ public class SwitchWorld : MonoBehaviour
 		if (MainCamera.cullingMask == 1 << 9)
 		{
 			MainCamera.cullingMask = 1 << 8;
-			PlayerBlack.SetActive(false);
-			PlayerWhite.SetActive(true);
+			ColliderLeft.layer =  8;
+			ColliderRight.layer = 8;
+
+			PlayerWhite.GetComponent<Collider2D>().enabled = true;
+			PlayerBlack.GetComponent<Collider2D>().enabled = false;
+
+			RendereBlack.color = new Color(1, 1, 1, 0);
+			RendereWhite.color = new Color(1, 1, 1, 1);
+
 			MainCamera.backgroundColor = Color.black;
+			FlashlightCamera.backgroundColor = Color.white;
+
+
 		}
 		else
 		{
 			MainCamera.cullingMask = 1 << 9;
-			PlayerBlack.SetActive(true);
-			PlayerWhite.SetActive(false);
+			ColliderLeft.layer =  9;
+			ColliderRight.layer = 9;
+
+			PlayerWhite.GetComponent<Collider2D>().enabled = false;
+			PlayerBlack.GetComponent<Collider2D>().enabled = true;
+
+			RendereBlack.color = new Color(1, 1, 1, 1);
+			RendereWhite.color = new Color(1, 1, 1, 0);
+
 			MainCamera.backgroundColor = Color.white;
+			FlashlightCamera.backgroundColor = Color.black;
 		}
 	}
 }
