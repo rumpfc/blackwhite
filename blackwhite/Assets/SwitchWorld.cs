@@ -15,6 +15,8 @@ public class SwitchWorld : MonoBehaviour
 	public Camera MainCamera;
 	public Camera FlashlightCamera;
 
+	public GameObject Panel;
+
 	public PlayerMovement playerMovement;
 
 	public float minSwipeDeltaY;
@@ -58,6 +60,8 @@ public class SwitchWorld : MonoBehaviour
 
 	void changeWorld()
 	{
+		Panel.GetComponent<Animator>().SetTrigger("ChangeWorldTrigger");
+
 		if (MainCamera.cullingMask == (1 << 9 | 1 << 0))
 		{
 			MainCamera.cullingMask = 1 << 8 | 1 << 0;
