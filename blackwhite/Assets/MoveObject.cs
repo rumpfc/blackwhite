@@ -31,7 +31,8 @@ public class MoveObject : MonoBehaviour
 							ObjectToMove.GetComponent<Taggable>().Climbable = isClimbable;
 							StartCoroutine(stopPlayer());
 							ObjectToMove.GetComponent<Rigidbody2D>().isKinematic = false;
-							//gameObject.GetComponent<PlayerMovement>().canJump = true;
+							gameObject.GetComponent<PlayerMovement>().canJump = true;
+
 							foreach (GameObject g in GameObject.FindGameObjectsWithTag("MovingObjectCollider"))
 							{
 								g.SetActive(false);
@@ -47,7 +48,7 @@ public class MoveObject : MonoBehaviour
 								ObjectToMove.GetComponent<Taggable>().Climbable = false;
 								StartCoroutine(stopPlayer());
 								ObjectToMove.GetComponent<Rigidbody2D>().isKinematic = true;
-								//gameObject.GetComponent<PlayerMovement>().canJump = false;
+								gameObject.GetComponent<PlayerMovement>().canJump = false;
 								foreach (GameObject g in GameObject.FindGameObjectsWithTag("MovingObjectCollider"))
 								{
 									g.SetActive(true);
