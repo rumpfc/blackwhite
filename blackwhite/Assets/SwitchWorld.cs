@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SwitchWorld : MonoBehaviour
@@ -44,7 +45,7 @@ public class SwitchWorld : MonoBehaviour
 						{
 							if (swipeDistVertical / swipeDistHorizontal < -1)
 							{
-								changeWorld();
+								StartCoroutine(changeWorld());
 							}
 						}
 						break;
@@ -54,13 +55,24 @@ public class SwitchWorld : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			changeWorld();
+			StartCoroutine(changeWorld());
 		}
 	}
 
-	void changeWorld()
+	IEnumerator changeWorld()
 	{
 		Panel.GetComponent<Animator>().SetTrigger("ChangeWorldTrigger");
+
+		if (Panel.GetComponent<Image>().color.r == 1f)
+		{
+			Panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+		}
+		else
+		{
+			Panel.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+		}
+
+		yield return new WaitForSeconds(0.5f);
 
 		if (MainCamera.cullingMask == (1 << 9 | 1 << 0))
 		{
