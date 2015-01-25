@@ -20,83 +20,39 @@ public class SwitchWorld : MonoBehaviour
 
 	public PlayerMovement playerMovement;
 
-	public float minSwipeDeltaY;
+	public bool canSwitch = true;
 
-	private Vector2 startPos;
-
-	private bool canSwitch = true;
-
-	public float minSwipeDistX;
 	public float minSwipeDistY;
+	private Vector2 startPos;
+	private Vector2 endPos;
 
 
 	void Update()
 	{
 		if (canSwitch)
 		{
-			if (Input.touchCount > 0) 
-             
-         {
-             
-             Touch touch = Input.touches[0];
-             
-             
-             
-             switch (touch.phase) 
-                 
-             {
-                 
-             case TouchPhase.Began:
- 
-                 startPos = touch.position;
-                 
-                 break;
-                 
-                 
-                 
-             case TouchPhase.Ended:
- 
-                     float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
- 
-                     if (swipeDistVertical > minSwipeDistY) 
-                         
-                     {
-                         
-                         float swipeValue = Mathf.Sign(touch.position.y - startPos.y);
-                         
-                         if (swipeValue > 0)//up swipe
- 
-                            changeWorld();
-                         
-                         else if (swipeValue < 0){}//down swipe
- 
-                             //Shrink ();
-                         
-                     }
-                     
-                     float swipeDistHorizontal = (new Vector3(touch.position.x,0, 0) - new Vector3(startPos.x, 0, 0)).magnitude;
-                     
-                     if (swipeDistHorizontal > minSwipeDistX) 
-                         
-                     {
-                         
-                         float swipeValue = Mathf.Sign(touch.position.x - startPos.x);
-                         
-                         if (swipeValue > 0){}//right swipe
-                             
-                             //MoveRight ();
+			if (Input.GetMouseButtonDown(0))
+			{
+				startPos = Input.mousePosition;
+			}
 
-						 else if (swipeValue < 0) { }//left swipe
-                             
-                             //MoveLeft ();
-                         
-                     }
-                 break;
-             }
-         }
+			if (Input.GetMouseButtonUp(0))
+			{
+				endPos = Input.mousePosition;
+				Debug.Log(startPos.y - endPos.y > minSwipeDistY);
+
+				if (startPos.y - endPos.y > Screen.height / 2)
+				{
+					if ((startPos.y - endPos.y) / (startPos.x - endPos.x) > 1)
+					{
+						StartCoroutine(changeWorld());
+					}
+				}
+			}
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
+				Debug.Log("meh");
 				StartCoroutine(changeWorld());
 			}
 		}

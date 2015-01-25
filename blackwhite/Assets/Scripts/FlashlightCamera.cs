@@ -17,6 +17,7 @@ public class FlashlightCamera : MonoBehaviour
 
 			gameObject.transform.position = flashLightPos;
 		}
+		
 		if(Input.GetMouseButton(1))
 		{
 			flashlight.SetActive(true);
