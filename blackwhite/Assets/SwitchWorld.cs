@@ -28,7 +28,7 @@ public class SwitchWorld : MonoBehaviour
 
 	public bool whiteWorld = true;
 
-	void Update()
+	void LateUpdate()
 	{
 		if (canSwitch)
 		{
@@ -49,6 +49,10 @@ public class SwitchWorld : MonoBehaviour
 						StartCoroutine(changeWorld());
 					}
 				}
+
+				playerMovement.collidedLeft();
+				playerMovement.collidedRight();
+				GetComponent<Animator>().SetBool("Walking", false);
 			}
 
 			if (Input.GetKeyDown(KeyCode.Space))
