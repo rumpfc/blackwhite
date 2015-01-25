@@ -23,7 +23,7 @@ public class MoveObject : MonoBehaviour
 					ObjectToMove = hit.collider.gameObject;
 					relTransform = ObjectToMove.transform.position - transform.position;
 
-					if (relTransform.magnitude <= 1.5)
+					if (relTransform.magnitude <= 2)
 					{
 						if (Moving)
 						{
@@ -42,6 +42,7 @@ public class MoveObject : MonoBehaviour
 						{
 							if (ObjectToMove.transform.position.y - transform.position.y <= 0.2f && ObjectToMove.transform.position.y - transform.position.y >= -0.2f)
 							{
+
 								Moving = true;
 								PlayerMovementRef.StopWalking();
 								isClimbable = ObjectToMove.GetComponent<Taggable>().Climbable;
