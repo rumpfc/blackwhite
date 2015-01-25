@@ -47,12 +47,12 @@ public class SwitchWorld : MonoBehaviour
 					if (Mathf.Sign(startPos.y) - Mathf.Sign(endPos.y) / Mathf.Sign(startPos.x) - Mathf.Sign(endPos.x) < 1)
 					{
 						StartCoroutine(changeWorld());
+
+						playerMovement.collidedLeft();
+						playerMovement.collidedRight();
+						GetComponent<Animator>().SetBool("Walking", false);
 					}
 				}
-
-				playerMovement.collidedLeft();
-				playerMovement.collidedRight();
-				GetComponent<Animator>().SetBool("Walking", false);
 			}
 
 			if (Input.GetKeyDown(KeyCode.Space))
