@@ -17,7 +17,7 @@ public class MainCameraMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		bgStartPos = transform.position;
+
 	}
 	
 	// Update is called once per frame
@@ -28,8 +28,5 @@ public class MainCameraMovement : MonoBehaviour {
 		newCamPos.y = Mathf.Clamp (newCamPos.y, minY, maxY);
 		newCamPos.z = transform.position.z;
 		transform.position =  Vector3.SmoothDamp(transform.position, newCamPos, ref velocity, smoothTime);
-
-		Vector3 newBgPos = transform.position;
-		newBgPos.z = bgStartPos.z;
 	}
 }
