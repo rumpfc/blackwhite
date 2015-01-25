@@ -102,6 +102,13 @@ public class SwitchWorld : MonoBehaviour
 			{
 				moveObject.ReleaseObject();
 			}
+
+			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Button"))
+			{
+				g.GetComponent<ButtonScript>().OnTriggerExit2D(new Collider2D());
+				g.GetComponent<OpenDoor>().OnTriggerExit2D(new Collider2D());
+				g.GetComponent<Animator>().Play("buttonUnpressed");
+			}
 		}
 		else
 		{

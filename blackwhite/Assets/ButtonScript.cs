@@ -19,11 +19,9 @@ public class ButtonScript : MonoBehaviour
 	void OnTriggerStay2D(Collider2D other)
 	{
 		animator.Play("buttonPressed");
-
-		
 	}
 
-	void OnTriggerExit2D(Collider2D other)
+	public void OnTriggerExit2D(Collider2D other)
 	{
 		animator.Play("buttonUnpressed");
 	}

@@ -9,7 +9,7 @@ public class OpenDoor : MonoBehaviour {
 		animator.Play ("doorOpened");
 	}
 	
-	void OnTriggerExit2D(Collider2D other) {
+	public void OnTriggerExit2D(Collider2D other) {
 		animator.Play ("doorClosed");
 	}
 }
