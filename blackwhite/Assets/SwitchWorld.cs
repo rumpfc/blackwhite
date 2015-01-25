@@ -24,6 +24,8 @@ public class SwitchWorld : MonoBehaviour
 
 	public PlayerMovement playerMovement;
 
+	public MoveObject moveObject;
+
 	public bool canSwitch = true;
 
 	public float minSwipeDistY;
@@ -61,7 +63,6 @@ public class SwitchWorld : MonoBehaviour
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				Debug.Log("meh");
 				StartCoroutine(changeWorld());
 			}
 		}
@@ -105,6 +106,10 @@ public class SwitchWorld : MonoBehaviour
 			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
 			{
 				g.layer = 8;
+			}
+			if (moveObject.Moving)
+			{
+				moveObject.ReleaseObject();
 			}
 		}
 		else

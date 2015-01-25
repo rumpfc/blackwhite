@@ -37,19 +37,7 @@ public class MoveObject : MonoBehaviour
 					{
 						if (Moving)
 						{
-							Moving = false;
-							ObjectToMove.GetComponent<Taggable>().Climbable = isClimbable;
-							StartCoroutine(stopPlayer());
-							ObjectToMove.GetComponent<Rigidbody2D>().isKinematic = false;
-							gameObject.GetComponent<PlayerMovement>().canJump = true;
-
-							foreach (GameObject g in GameObject.FindGameObjectsWithTag("MovingObjectCollider"))
-							{
-								g.SetActive(false);
-							}
-
-							ColliderL.SetActive(true);
-							ColliderR.SetActive(true);
+							ReleaseObject();
 						}
 						else
 						{
@@ -94,6 +82,23 @@ public class MoveObject : MonoBehaviour
 		}
 
 
+	}
+
+	public void ReleaseObject()
+	{
+			Moving = false;
+			ObjectToMove.GetComponent<Taggable>().Climbable = isClimbable;
+			StartCoroutine(stopPlayer());
+			ObjectToMove.GetComponent<Rigidbody2D>().isKinematic = false;
+			gameObject.GetComponent<PlayerMovement>().canJump = true;
+
+			foreach (GameObject g in GameObject.FindGameObjectsWithTag("MovingObjectCollider"))
+			{
+				g.SetActive(false);
+			}
+
+			ColliderL.SetActive(true);
+			ColliderR.SetActive(true);
 	}
 
 	IEnumerator stopPlayer()
