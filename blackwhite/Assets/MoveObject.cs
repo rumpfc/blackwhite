@@ -30,7 +30,7 @@ public class MoveObject : MonoBehaviour
 				if (hit.collider.gameObject.GetComponent<Taggable>().Movable)
 				{
 					ObjectToMove = hit.collider.gameObject;
-					float distance = Mathf.Abs (ObjectToMove.transform.position.x - transform.position.x);
+					float distance = Mathf.Abs(ObjectToMove.transform.position.x - transform.position.x);
 					Debug.Log("Found something" + distance);
 
 					if (distance <= 2)
@@ -50,7 +50,6 @@ public class MoveObject : MonoBehaviour
 
 							ColliderL.SetActive(true);
 							ColliderR.SetActive(true);
-
 						}
 						else
 						{

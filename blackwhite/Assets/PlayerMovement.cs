@@ -151,8 +151,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			transform.Translate(new Vector3(-1.125f, 1.001f, 0));
 		}
+
 		GetComponent<Rigidbody2D>().isKinematic = false;
-		//rigidbody2D.velocity = new Vector2(0, -0.2f);
 		canJump = true;
 		moving = true;
 	}
