@@ -22,7 +22,7 @@ public class MoveObject : MonoBehaviour
 		{
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-			if (hit.collider != null && hit.collider.gameObject != null)
+			if (hit.collider != null && hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<Taggable>() != null)
 			{
 				if (hit.collider.gameObject.GetComponent<Taggable>().Movable)
 				{
