@@ -4,6 +4,10 @@ using System.Collections;
 
 public class SwitchWorld : MonoBehaviour
 {
+
+	private static Color32 WHITE = new Color32(255,255,255,255);
+	private static Color32 BLACK = new Color32(144,164,174,255);
+
 	public GameObject PlayerWhite;
 	public GameObject PlayerBlack;
 
@@ -93,8 +97,8 @@ public class SwitchWorld : MonoBehaviour
 			RendereBlack.color = new Color(1, 1, 1, 0);
 			RendereWhite.color = new Color(1, 1, 1, 1);
 
-			MainCamera.backgroundColor = Color.white;
-			FlashlightCamera.backgroundColor = Color.black;
+			MainCamera.backgroundColor = WHITE;
+			FlashlightCamera.backgroundColor = BLACK;
 
 			whiteWorld = true;
 
@@ -117,8 +121,8 @@ public class SwitchWorld : MonoBehaviour
 			RendereBlack.color = new Color(1, 1, 1, 1);
 			RendereWhite.color = new Color(1, 1, 1, 0);
 
-			MainCamera.backgroundColor = Color.black;
-			FlashlightCamera.backgroundColor = Color.white;
+			MainCamera.backgroundColor = BLACK;
+			FlashlightCamera.backgroundColor = WHITE;
 
 			whiteWorld = false;
 
