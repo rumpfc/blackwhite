@@ -13,7 +13,6 @@ public class MoveObject : MonoBehaviour
 	public GameObject OnjectColliderB;
 
 	private GameObject ObjectToMove;
-	private Vector3 relTransform;
 	private bool isClimbable;
 
 	void Update()
@@ -21,15 +20,15 @@ public class MoveObject : MonoBehaviour
 		if (Input.GetMouseButtonUp(0))
 		{
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
 			if (hit.collider != null && hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<Taggable>() != null)
 			{
 				if (hit.collider.gameObject.GetComponent<Taggable>().Movable)
 				{
 					ObjectToMove = hit.collider.gameObject;
-					relTransform = ObjectToMove.transform.position - transform.position;
+					float distance = Mathf.Abs (ObjectToMove.transform.position.x - transform.position.x);
+					Debug.Log("Found something" + distance);
 
-					if (relTransform.magnitude <= 2)
+					if (distance <= 2)
 					{
 						if (Moving)
 						{

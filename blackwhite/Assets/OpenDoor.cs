@@ -5,7 +5,7 @@ public class OpenDoor : MonoBehaviour {
 
 	public Animator animator;
 
-	void OnTriggerEnter2D(Collider2D other) {
+	void OnTriggerStay2D(Collider2D other) {
 		animator.Play ("doorOpened");
 	}
 	
