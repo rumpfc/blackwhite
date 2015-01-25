@@ -3,14 +3,9 @@ using System.Collections;
 
 public class LoadLevel : MonoBehaviour {
 
-	public void loadScene(int level)
+	public void loadScene(string level)
 	{
 		Application.LoadLevel (level);
-	}
-
-	public void loadMainMenu()
-	{
-		Application.LoadLevel (0);
 	}
 
 	public void loadCredits()

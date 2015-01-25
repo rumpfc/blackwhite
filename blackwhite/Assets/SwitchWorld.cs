@@ -26,6 +26,7 @@ public class SwitchWorld : MonoBehaviour
 	private Vector2 startPos;
 	private Vector2 endPos;
 
+	public bool whiteWorld = true;
 
 	void Update()
 	{
@@ -43,7 +44,7 @@ public class SwitchWorld : MonoBehaviour
 
 				if (startPos.y - endPos.y > Screen.height / 2)
 				{
-					if ((startPos.y - endPos.y) / (startPos.x - endPos.x) > 1)
+					if (Mathf.Sign(startPos.y - endPos.y) / Mathf.Sign(startPos.x - endPos.x) > 1)
 					{
 						StartCoroutine(changeWorld());
 					}
@@ -91,6 +92,8 @@ public class SwitchWorld : MonoBehaviour
 			MainCamera.backgroundColor = Color.white;
 			FlashlightCamera.backgroundColor = Color.black;
 
+			whiteWorld = true;
+
 			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
 			{
 				g.layer = 8;
@@ -112,6 +115,8 @@ public class SwitchWorld : MonoBehaviour
 
 			MainCamera.backgroundColor = Color.black;
 			FlashlightCamera.backgroundColor = Color.white;
+
+			whiteWorld = false;
 
 			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Dynamic"))
 			{
