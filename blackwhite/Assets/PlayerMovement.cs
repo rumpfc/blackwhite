@@ -127,6 +127,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void jump()
 	{
+
+		Debug.Log("Jump");
 		moving = false;
 
 		canJump = false;
@@ -146,10 +148,12 @@ public class PlayerMovement : MonoBehaviour
 		if (PlayerWhite.transform.localScale.x == 1)
 		{
 			transform.Translate(new Vector3(1.125f, 1.001f, 0));
+			climbableRight = false;
 		}
 		else
 		{
 			transform.Translate(new Vector3(-1.125f, 1.001f, 0));
+			climbableLeft = false;
 		}
 
 		GetComponent<Rigidbody2D>().isKinematic = false;
