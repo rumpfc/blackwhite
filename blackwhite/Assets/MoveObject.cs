@@ -8,6 +8,7 @@ public class MoveObject : MonoBehaviour
 	public GameObject ColliderR;
 	public GameObject PlayerWhite;
 	public PlayerMovement PlayerMovementRef;
+	public SwitchWorld switchWorlds;
 
 	public GameObject OnjectColliderW;
 	public GameObject OnjectColliderB;
@@ -20,7 +21,11 @@ public class MoveObject : MonoBehaviour
 		if (Input.GetMouseButtonUp(0))
 		{
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-			if (hit.collider != null && hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<Taggable>() != null)
+
+			bool hitWhite = hit.collider.gameObject.layer == 8;
+			bool isWhite = switchWorlds.whiteWorld;
+
+			if (hit.collider != null && hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<Taggable>() != null && (hitWhite == isWhite))
 			{
 				if (hit.collider.gameObject.GetComponent<Taggable>().Movable)
 				{
