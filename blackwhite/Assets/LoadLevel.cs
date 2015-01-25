@@ -10,7 +10,16 @@ public class LoadLevel : MonoBehaviour {
 
 	public void loadMainMenu()
 	{
-		Debug.Log ("load main menu");
 		Application.LoadLevel (0);
+	}
+
+	public void loadCredits()
+	{
+		Application.LoadLevel ("Credits");
+	}
+
+	public void gameStart()
+	{
+		Application.LoadLevel ("Intro");
 	}
 }
