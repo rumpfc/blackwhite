@@ -23,7 +23,7 @@ public class MoveObject : MonoBehaviour
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
 			bool hitWhite = hit.collider != null && hit.collider.gameObject.layer == 8;
-			bool isWhite = switchWorlds.whiteWorld;
+			bool isWhite = switchWorlds == null || switchWorlds.whiteWorld;
 
 			if (hit.collider != null && hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<Taggable>() != null && (hitWhite == isWhite))
 			{
