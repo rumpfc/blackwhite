@@ -5,8 +5,8 @@ using System.Collections;
 public class SwitchWorld : MonoBehaviour
 {
 
-	private static Color32 WHITE = new Color32(255,255,255,255);
-	private static Color32 BLACK = new Color32(144,164,174,255);
+	private static Color32 WHITE = new Color32(255, 255, 255, 255);
+	private static Color32 BLACK = new Color32(144, 164, 174, 255);
 
 	public GameObject PlayerWhite;
 	public GameObject PlayerBlack;
@@ -74,14 +74,7 @@ public class SwitchWorld : MonoBehaviour
 
 		Panel.GetComponent<Animator>().SetTrigger("ChangeWorldTrigger");
 
-		if (Panel.GetComponent<Image>().color.r == 1f)
-		{
-			Panel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-		}
-		else
-		{
-			Panel.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-		}
+		
 
 		yield return new WaitForSeconds(0.5f);
 
@@ -138,6 +131,15 @@ public class SwitchWorld : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(0.5f);
+
+		if (Panel.GetComponent<Image>().color.r != 1f)
+		{
+			Panel.GetComponent<Image>().color = new Color32(WHITE.r, WHITE.g, WHITE.b, 0);
+		}
+		else
+		{
+			Panel.GetComponent<Image>().color = new Color32(BLACK.r, BLACK.g, BLACK.b, 0);
+		}
 
 		canSwitch = true;
 	}
