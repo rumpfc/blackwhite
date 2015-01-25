@@ -54,8 +54,6 @@ public class SwitchWorld : MonoBehaviour
 					{
 						StartCoroutine(changeWorld());
 
-						playerMovement.collidedLeft();
-						playerMovement.collidedRight();
 						GetComponent<Animator>().SetBool("Walking", false);
 					}
 				}
