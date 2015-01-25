@@ -9,6 +9,9 @@ public class TriggerPlayerCollision : MonoBehaviour
 
 	void OnTriggerStay2D(Collider2D other)
 	{
+		if (other.isTrigger) {
+			return;
+		}
 		Taggable taggable = other.GetComponent<Taggable>();
 		if (taggable != null && taggable.Climbable)
 		{
