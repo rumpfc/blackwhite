@@ -4,6 +4,9 @@ using System.Collections;
 public class MainCameraMovement : MonoBehaviour {
 
 	public GameObject Player;
+	public GameObject Background;
+
+	private Vector3 bgStartPos;
 	private Vector3 velocity = Vector3.zero;
 	private float smoothTime = 0.3f;
 
@@ -14,15 +17,23 @@ public class MainCameraMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		bgStartPos = transform.position;
+		bgStartPos.z = Background.transform.position.z;;
+		Background.transform.position = bgStartPos;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Vector3 newCamPos = Player.transform.position;
+
 		newCamPos.x = Mathf.Clamp (newCamPos.x, minX, maxX);
 		newCamPos.y = Mathf.Clamp (newCamPos.y, minY, maxY);
 		newCamPos.z = transform.position.z;
 		transform.position =  Vector3.SmoothDamp(transform.position, newCamPos, ref velocity, smoothTime);
+
+		Vector3 newBgPos = transform.position;
+		newBgPos.z = bgStartPos.z;
+
+		Background.transform.position = bgStartPos + (newBgPos - bgStartPos) * 0.5f;
 	}
 }

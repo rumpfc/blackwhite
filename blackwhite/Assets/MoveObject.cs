@@ -4,7 +4,13 @@ using System.Collections;
 public class MoveObject : MonoBehaviour
 {
 	public bool Moving;
+	public GameObject ColliderL;
+	public GameObject ColliderR;
+	public GameObject PlayerWhite;
 	public PlayerMovement PlayerMovementRef;
+
+	public GameObject OnjectColliderW;
+	public GameObject OnjectColliderB;
 
 	private GameObject ObjectToMove;
 	private Vector3 relTransform;
@@ -16,14 +22,14 @@ public class MoveObject : MonoBehaviour
 		{
 			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-			if (hit.collider != null && hit.collider.gameObject != null)
+			if (hit.collider != null && hit.collider.gameObject != null && hit.collider.gameObject.GetComponent<Taggable>() != null)
 			{
 				if (hit.collider.gameObject.GetComponent<Taggable>().Movable)
 				{
 					ObjectToMove = hit.collider.gameObject;
 					relTransform = ObjectToMove.transform.position - transform.position;
 
-					if (relTransform.magnitude <= 1.5)
+					if (relTransform.magnitude <= 2)
 					{
 						if (Moving)
 						{
@@ -37,11 +43,16 @@ public class MoveObject : MonoBehaviour
 							{
 								g.SetActive(false);
 							}
+
+							ColliderL.SetActive(true);
+							ColliderR.SetActive(true);
+
 						}
 						else
 						{
 							if (ObjectToMove.transform.position.y - transform.position.y <= 0.2f && ObjectToMove.transform.position.y - transform.position.y >= -0.2f)
 							{
+
 								Moving = true;
 								PlayerMovementRef.StopWalking();
 								isClimbable = ObjectToMove.GetComponent<Taggable>().Climbable;
@@ -49,10 +60,24 @@ public class MoveObject : MonoBehaviour
 								StartCoroutine(stopPlayer());
 								ObjectToMove.GetComponent<Rigidbody2D>().isKinematic = true;
 								gameObject.GetComponent<PlayerMovement>().canJump = false;
+
 								foreach (GameObject g in GameObject.FindGameObjectsWithTag("MovingObjectCollider"))
 								{
 									g.SetActive(true);
 								}
+
+								if (ObjectToMove.transform.position.x - transform.position.x > 0)
+								{
+									ColliderR.SetActive(false);
+									ColliderL.SetActive(true);
+								}
+								else
+								{
+									ColliderR.SetActive(true);
+									ColliderL.SetActive(false);
+								}
+
+
 							}
 						}
 					}
@@ -62,7 +87,7 @@ public class MoveObject : MonoBehaviour
 
 		if (Moving)
 		{
-			ObjectToMove.transform.position = transform.position + relTransform;
+			ObjectToMove.transform.position = transform.position + new Vector3(1.2f, 0, 0);
 		}
 
 

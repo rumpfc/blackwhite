@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				Debug.Log("(dist < 0 && !blockedLeft) || (dist > 0 && !blockedRight)");
 				moving = true;
-				GetComponent<Animator>().SetTrigger("Start");
+				GetComponent<Animator>().SetBool("Walking", true);
 			}
 		}
 
@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public void StopWalking()
 	{
-		GetComponent<Animator>().SetTrigger("Stop");
+		GetComponent<Animator>().SetBool("Walking", false);
 		moving = false;
 		Debug.Log("I stop walking");
 	}
