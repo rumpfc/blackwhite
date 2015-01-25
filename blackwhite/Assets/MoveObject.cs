@@ -4,7 +4,13 @@ using System.Collections;
 public class MoveObject : MonoBehaviour
 {
 	public bool Moving;
+	public GameObject ColliderL;
+	public GameObject ColliderR;
+	public GameObject PlayerWhite;
 	public PlayerMovement PlayerMovementRef;
+
+	public GameObject OnjectColliderW;
+	public GameObject OnjectColliderB;
 
 	private GameObject ObjectToMove;
 	private Vector3 relTransform;
@@ -37,6 +43,10 @@ public class MoveObject : MonoBehaviour
 							{
 								g.SetActive(false);
 							}
+
+							ColliderL.SetActive(true);
+							ColliderR.SetActive(true);
+
 						}
 						else
 						{
@@ -50,10 +60,24 @@ public class MoveObject : MonoBehaviour
 								StartCoroutine(stopPlayer());
 								ObjectToMove.GetComponent<Rigidbody2D>().isKinematic = true;
 								gameObject.GetComponent<PlayerMovement>().canJump = false;
+
 								foreach (GameObject g in GameObject.FindGameObjectsWithTag("MovingObjectCollider"))
 								{
 									g.SetActive(true);
 								}
+
+								if (ObjectToMove.transform.position.x - transform.position.x > 0)
+								{
+									ColliderR.SetActive(false);
+									ColliderL.SetActive(true);
+								}
+								else
+								{
+									ColliderR.SetActive(true);
+									ColliderL.SetActive(false);
+								}
+
+
 							}
 						}
 					}
@@ -63,7 +87,7 @@ public class MoveObject : MonoBehaviour
 
 		if (Moving)
 		{
-			ObjectToMove.transform.position = transform.position + relTransform;
+			ObjectToMove.transform.position = transform.position + new Vector3(1.2f, 0, 0);
 		}
 
 
