@@ -17,4 +17,9 @@ public class LoadLevel : MonoBehaviour {
 	{
 		Application.LoadLevel ("Credits");
 	}
+
+	public void gameStart()
+	{
+		Application.LoadLevel ("Intro");
+	}
 }
