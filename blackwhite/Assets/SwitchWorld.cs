@@ -44,7 +44,7 @@ public class SwitchWorld : MonoBehaviour
 
 				if (startPos.y - endPos.y > Screen.height / 2)
 				{
-					if (Mathf.Sign(startPos.y - endPos.y) / Mathf.Sign(startPos.x - endPos.x) > 1)
+					if (Mathf.Sign(startPos.y) - Mathf.Sign(endPos.y) / Mathf.Sign(startPos.x) - Mathf.Sign(endPos.x) < 1)
 					{
 						StartCoroutine(changeWorld());
 					}
