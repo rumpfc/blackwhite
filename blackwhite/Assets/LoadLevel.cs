@@ -7,4 +7,10 @@ public class LoadLevel : MonoBehaviour {
 	{
 		Application.LoadLevel (level);
 	}
+
+	public void loadMainMenu()
+	{
+		Debug.Log ("load main menu");
+		Application.LoadLevel (0);
+	}
 }
