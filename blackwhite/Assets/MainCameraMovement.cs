@@ -4,7 +4,7 @@ using System.Collections;
 public class MainCameraMovement : MonoBehaviour {
 
 	public GameObject Player;
-	public GameObject Background;
+	//public GameObject Background;
 
 	private Vector3 bgStartPos;
 	private Vector3 velocity = Vector3.zero;
@@ -18,8 +18,6 @@ public class MainCameraMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		bgStartPos = transform.position;
-		bgStartPos.z = Background.transform.position.z;;
-		Background.transform.position = bgStartPos;
 	}
 	
 	// Update is called once per frame
@@ -33,7 +31,5 @@ public class MainCameraMovement : MonoBehaviour {
 
 		Vector3 newBgPos = transform.position;
 		newBgPos.z = bgStartPos.z;
-
-		Background.transform.position = bgStartPos + (newBgPos - bgStartPos) * 0.5f;
 	}
 }
