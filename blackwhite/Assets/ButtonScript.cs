@@ -8,10 +8,12 @@ public class ButtonScript : MonoBehaviour
 
 	void OnTriggerEnter()
 	{
+		/*
 		if (!GetComponent<AudioSource>().isPlaying)
 		{
 			GetComponent<AudioSource>().Play();
 		}
+		 */
 	}
 
 	void OnTriggerStay2D(Collider2D other)
