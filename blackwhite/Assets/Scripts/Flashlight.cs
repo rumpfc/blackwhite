@@ -6,16 +6,16 @@ public class Flashlight : MonoBehaviour
     public GameObject FlashlightCamera;
 
     private Vector2 flashLightPos;
-    private SkinnedMeshRenderer renderer;
+    private SkinnedMeshRenderer skinnedRenderer;
 
     void Start()
     {
-        renderer = gameObject.GetComponent<SkinnedMeshRenderer>();
+        skinnedRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
 
         float size = (Camera.main.aspect * Camera.main.orthographicSize) / 10;
 
         transform.localScale = new Vector3(size, size, size);
-        transform.localPosition = new Vector3(0f, -Camera.main.orthographicSize, 2f);
+       // transform.localPosition = new Vector3(0f, -Camera.main.orthographicSize / 2, 2f);
     }
 
     void Update()
@@ -26,22 +26,22 @@ public class Flashlight : MonoBehaviour
 
             Vector2 flashlightPos = ((Input.GetTouch(0).position + Input.GetTouch(1).position) / 2 / Screen.width * 100);
 
-            renderer.SetBlendShapeWeight(0, ((Input.touches[0].position - Input.touches[1].position).magnitude) / Screen.width * 100);
-            renderer.SetBlendShapeWeight(1, flashlightPos.x);
-            renderer.SetBlendShapeWeight(2, flashlightPos.y);
+            skinnedRenderer.SetBlendShapeWeight(0, ((Input.touches[0].position - Input.touches[1].position).magnitude) / Screen.width * 100);
+            skinnedRenderer.SetBlendShapeWeight(1, flashlightPos.x);
+            skinnedRenderer.SetBlendShapeWeight(2, flashlightPos.y);
         }
         else if (Input.GetMouseButton(1))
         {
             FlashlightCamera.SetActive(true);
 
-            renderer.SetBlendShapeWeight(0, 50);
-            renderer.SetBlendShapeWeight(1, Input.mousePosition.x / Screen.width * 100);
-            renderer.SetBlendShapeWeight(2, Input.mousePosition.y / Screen.width * 100);
+            skinnedRenderer.SetBlendShapeWeight(0, 50);
+            skinnedRenderer.SetBlendShapeWeight(1, Input.mousePosition.x / Screen.width * 100);
+            skinnedRenderer.SetBlendShapeWeight(2, Input.mousePosition.y / Screen.width * 100);
         }
         else
         {
             FlashlightCamera.SetActive(false);
-            renderer.SetBlendShapeWeight(0, 0);
+            skinnedRenderer.SetBlendShapeWeight(0, 0);
 
         }
     }
