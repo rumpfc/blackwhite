@@ -15,7 +15,7 @@ public class Flashlight : MonoBehaviour
         float size = (Camera.main.aspect * Camera.main.orthographicSize) / 10;
 
         transform.localScale = new Vector3(size, size, size);
-       // transform.localPosition = new Vector3(0f, -Camera.main.orthographicSize / 2, 2f);
+        transform.localPosition = new Vector3(0f, -Camera.main.orthographicSize, 2f);
     }
 
     void Update()
